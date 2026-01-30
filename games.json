@@ -1,7 +1,6 @@
 [
-  { "title": "Photo Research", "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png", "url": "https://www.instagram.com", "type": "new" },
-  { "title": "Messaging Hub", "thumb": "https://accounts.snapchat.com/accounts/static/images/ghost/snapchat-app-icon.png", "url": "https://web.snapchat.com", "type": "new" },
-  { "title": "Video Research", "thumb": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg", "url": "https://urlebird.com", "type": "new" },
-  { "title": "Cloud Compute", "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg", "url": "https://now.gg/apps/roblox-corporation/5349/roblox.html", "type": "new" },
-  { "title": "Resource Search", "thumb": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", "url": "https://www.google.com", "type": "new" }
+  { "title": "Social Research 1", "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png", "url": "aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS8/dmFyaWFudD1wYXN0cnk=", "type": "stealth" },
+  { "title": "Messaging Tool", "thumb": "https://accounts.snapchat.com/accounts/static/images/ghost/snapchat-app-icon.png", "url": "aHR0cHM6Ly93ZWIuc25hcGNoYXQuY29t", "type": "stealth" },
+  { "title": "Video Analytics", "thumb": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg", "url": "aHR0cHM6Ly91cmxlYmlyZC5jb20=", "type": "stealth" },
+  { "title": "Cloud Compute", "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg", "url": "aHR0cHM6Ly9ub3cuZ2cvYXBwcy9yb2Jsb3gtY29ycG9yYXRpb24vNTM0OS9yb2Jsb3guaHRtbA==", "type": "stealth" }
 ]
