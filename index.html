@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">ARCADE<span>HUB</span></div>
+        <input type="text" id="search-bar" placeholder="Search games or apps...">
+    </nav>
+
+    <div id="game-container" class="grid"></div>
+
+    <div id="overlay" class="hidden">
+        <div class="modal">
+            <button id="close-btn">BACK TO GAMES</button>
+            <iframe id="game-screen" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
