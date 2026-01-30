@@ -1,13 +1,11 @@
 const container = document.getElementById('game-container');
 const searchBar = document.getElementById('search-bar');
-const panicScreen = document.getElementById('panic-screen');
-let allItems = [];
 
 fetch('games.json')
     .then(res => res.json())
     .then(data => {
-        allItems = data;
-        renderCards(allItems);
+        renderCards(data);
+        window.allItems = data; 
     });
 
 function renderCards(data) {
@@ -28,10 +26,17 @@ function renderCards(data) {
     });
 }
 
-// Search Filter
+// Panic Key: Press ~ to instantly switch to Google Docs
+window.addEventListener('keydown', (e) => {
+    if (e.key === '~') {
+        window.location.replace("https://docs.google.com/document/u/0/");
+    }
+});
+
+// Search
 searchBar.oninput = () => {
     const query = searchBar.value.toLowerCase();
-    renderCards(allItems.filter(i => i.title.toLowerCase().includes(query)));
+    renderCards(window.allItems.filter(i => i.title.toLowerCase().includes(query)));
 };
 
 // Close Overlay
@@ -39,11 +44,3 @@ document.getElementById('close-btn').onclick = () => {
     document.getElementById('overlay').classList.add('hidden');
     document.getElementById('game-screen').src = "";
 };
-
-// PANIC KEY: Press ~ (Tilde) to hide everything
-window.addEventListener('keydown', (e) => {
-    if (e.key === '~') {
-        document.body.innerHTML = `<iframe src="https://docs.google.com/document/d/1_9iE6V0SOnN37Y9Fp_2e_A0l0zF0O0vW/preview" style="width:100%;height:100vh;border:none;"></iframe>`;
-        document.title = "Google Docs";
-    }
-});
