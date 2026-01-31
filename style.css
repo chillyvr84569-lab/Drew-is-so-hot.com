@@ -1,41 +1,26 @@
-/* The Main Container should be a column to stack the headers */
-.container {
+/* This makes the category section wide and the icons wrap underneath */
+.fat-row-grid {
     display: flex;
-    flex-direction: column; 
-    align-items: center;
-    width: 90%;
-    max-width: 1200px;
+    flex-wrap: wrap; /* This makes the row 'fat' by allowing icons to stack */
+    gap: 20px;
+    width: 100%;
+    justify-content: center; /* Centers the icons in the fat block */
+    margin-bottom: 40px;
 }
 
-/* The Category Title */
 .category-title {
     width: 100%;
     color: #bc13fe;
     text-shadow: 0 0 10px #bc13fe;
     font-family: 'Orbitron', sans-serif;
-    margin: 40px 0 15px 0;
     text-align: left;
-    border-bottom: 2px solid #bc13fe;
+    margin: 30px 0 15px 0;
+    border-bottom: 1px solid #bc13fe;
 }
 
-/* THE FAT ROW: This makes icons stack when they run out of space */
-.category-group {
-    display: flex;
-    flex-wrap: wrap; /* CRITICAL: Allows cards to wrap to next line */
-    justify-content: flex-start; /* Aligns them to the left */
-    gap: 20px;
-    width: 100%;
-    margin-bottom: 50px;
-    padding: 10px;
-}
-
-/* Individual Card Size */
-.game-card {
-    width: 140px; /* Adjust this to make the 'Fat Row' wider or thinner */
-    background: rgba(26, 26, 26, 0.8);
-    border: 2px solid #bc13fe;
-    border-radius: 12px;
-    padding: 10px;
-    transition: 0.3s;
-    cursor: pointer;
+/* Fixes the 'Exploding Icons' from your video */
+.card-img {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: contain;
 }
