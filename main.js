@@ -16,14 +16,10 @@ fetch('games.json')
 function renderCards(data) {
     if (!container) return;
     container.innerHTML = "";
-    
-    // The specific categories you requested
     const categories = ["Games", "Social Media", "Movies", "Proxies"];
 
     categories.forEach(cat => {
         const filtered = data.filter(item => item.category === cat);
-        
-        // Only create a section if there are items in that category
         if (filtered.length > 0) {
             const section = document.createElement('div');
             section.style.width = "100%";
@@ -33,7 +29,6 @@ function renderCards(data) {
             filtered.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'game-card';
-                
                 const isUrl = item.thumb.startsWith('http');
                 const iconHtml = isUrl 
                     ? `<img src="${item.thumb}" onerror="this.src='https://via.placeholder.com/150'">`
@@ -41,17 +36,21 @@ function renderCards(data) {
 
                 card.innerHTML = `${iconHtml}<h3 class="card-title">${item.title}</h3>`;
                 
-                // The about:blank Cloaker Logic
                 card.onclick = () => {
-                    const win = window.open('about:blank', '_blank');
-                    win.document.body.style.margin = '0';
-                    win.document.body.style.height = '100vh';
-                    const iframe = win.document.createElement('iframe');
-                    iframe.style.border = 'none';
-                    iframe.style.width = '100%';
-                    iframe.style.height = '100%';
-                    iframe.src = item.url;
-                    win.document.body.appendChild(iframe);
+                    // SNEAKY LOGIC: If it's Social Media, open normally. If not, use the Cloaker.
+                    if (item.category === "Social Media") {
+                        window.open(item.url, '_blank');
+                    } else {
+                        const win = window.open('about:blank', '_blank');
+                        win.document.body.style.margin = '0';
+                        win.document.body.style.height = '100vh';
+                        const iframe = win.document.createElement('iframe');
+                        iframe.style.border = 'none';
+                        iframe.style.width = '100%';
+                        iframe.style.height = '100%';
+                        iframe.src = item.url;
+                        win.document.body.appendChild(iframe);
+                    }
                 };
                 container.appendChild(card);
             });
@@ -59,11 +58,10 @@ function renderCards(data) {
     });
 }
 
-// 2. Clock Logic (Fixed Brackets)
+// 2. Clock Logic
 function startClock() {
     const clockElement = document.getElementById('clock');
     if (!clockElement) return;
-    
     setInterval(() => {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
@@ -74,7 +72,7 @@ function startClock() {
 }
 startClock();
 
-// 3. Panic Button (Canvas Redirect)
+// 3. Panic Button (Canvas)
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         window.location.href = 'https://canvas.instructure.com/login/canvas';
