@@ -78,3 +78,26 @@ body {
 .game-card:hover .card-title {
     opacity: 1;
 }
+.tab-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.tab-btn {
+    background: #1a1a1a;
+    border: 1px solid #bc13fe;
+    color: #bc13fe;
+    padding: 10px 20px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    text-shadow: 0 0 5px #bc13fe;
+}
+
+.tab-btn:hover, .tab-btn.active {
+    background: #bc13fe;
+    color: white;
+    box-shadow: 0 0 15px #bc13fe;
+}
