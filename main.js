@@ -1,80 +1,29 @@
-const container = document.getElementById('games-container');
-const searchInput = document.getElementById('searchInput');
-
-// 1. Fetch and Render with Categories
-fetch('games.json')
-    .then(response => response.json())
-    .then(data => {
-        renderCards(data);
-        searchInput.addEventListener('input', () => {
-            const term = searchInput.value.toLowerCase();
-            const filtered = data.filter(item => item.title.toLowerCase().includes(term));
-            renderCards(filtered);
-        });
-    });
-
 function renderCards(data) {
     if (!container) return;
     container.innerHTML = "";
-    const categories = ["Games", "Social Media", "Movies", "Proxies"];
+    const cats = ["Games", "Social Media", "Movies", "Proxies"];
 
-    categories.forEach(cat => {
+    cats.forEach(cat => {
         const filtered = data.filter(item => item.category === cat);
         if (filtered.length > 0) {
-            const section = document.createElement('div');
-            section.style.width = "100%";
-            section.innerHTML = `<h2 style="color: #bc13fe; text-shadow: 0 0 10px #bc13fe; margin-top: 30px; font-family: 'Orbitron', sans-serif;">${cat}</h2>`;
-            container.appendChild(section);
+            const h2 = document.createElement('h2');
+            h2.style = "color: #bc13fe; text-shadow: 0 0 10px #bc13fe; margin-top: 30px; font-family: 'Orbitron', sans-serif;";
+            h2.textContent = cat;
+            container.appendChild(h2);
 
             filtered.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'game-card';
-                const isUrl = item.thumb.startsWith('http');
-                const iconHtml = isUrl 
-                    ? `<img src="${item.thumb}" onerror="this.src='https://via.placeholder.com/150'">`
-                    : `<div style="font-size: 80px; padding: 20px;">${item.thumb}</div>`;
-
-                card.innerHTML = `${iconHtml}<h3 class="card-title">${item.title}</h3>`;
+                card.innerHTML = `
+                    ${item.thumb.startsWith('http') ? `<img src="${item.thumb}">` : `<div style="font-size:80px;padding:20px;">${item.thumb}</div>`}
+                    <h3 class="card-title">${item.title}</h3>`;
                 
+                // NO MORE CLOAKER: This opens the site normally so it doesn't get blocked
                 card.onclick = () => {
-                    // SNEAKY LOGIC: If it's Social Media, open normally. If not, use the Cloaker.
-                    if (item.category === "Social Media") {
-                        window.open(item.url, '_blank');
-                    } else {
-                        const win = window.open('about:blank', '_blank');
-                        win.document.body.style.margin = '0';
-                        win.document.body.style.height = '100vh';
-                        const iframe = win.document.createElement('iframe');
-                        iframe.style.border = 'none';
-                        iframe.style.width = '100%';
-                        iframe.style.height = '100%';
-                        iframe.src = item.url;
-                        win.document.body.appendChild(iframe);
-                    }
+                    window.open(item.url, '_blank');
                 };
                 container.appendChild(card);
             });
         }
     });
 }
-
-// 2. Clock Logic
-function startClock() {
-    const clockElement = document.getElementById('clock');
-    if (!clockElement) return;
-    setInterval(() => {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
-    }, 1000);
-}
-startClock();
-
-// 3. Panic Button (Canvas)
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        window.location.href = 'https://canvas.instructure.com/login/canvas';
-    }
-});
