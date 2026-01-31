@@ -1,95 +1,82 @@
-const container = document.getElementById('game-container');
-const searchBar = document.getElementById('search-bar');
+const container = document.getElementById('games-container');
+const searchInput = document.getElementById('searchInput');
 
-fetch('/district-resource-archive/games.json')
-    .then(res => res.json())
-    .then(data => renderCards(data))
-    .catch(err => console.error("Error:", err));
+// 1. Fetch and Render with Categories
+fetch('games.json')
+    .then(response => response.json())
+    .then(data => {
+        renderCards(data);
+        searchInput.addEventListener('input', () => {
+            const term = searchInput.value.toLowerCase();
+            const filtered = data.filter(item => item.title.toLowerCase().includes(term));
+            renderCards(filtered);
+        });
+    });
 
 function renderCards(data) {
     if (!container) return;
     container.innerHTML = "";
-
+    
+    // The specific categories you requested
     const categories = ["Games", "Social Media", "Movies", "Proxies"];
 
     categories.forEach(cat => {
-        // Create a heading for each category
-        const section = document.createElement('div');
-        section.style.width = "100%";
-        section.innerHTML = `<h2 style="color: #bc13fe; text-shadow: 0 0 10px #bc13fe; margin-top: 30px;">${cat}</h2>`;
-        container.appendChild(section);
-
-        // Filter data for this category
         const filtered = data.filter(item => item.category === cat);
+        
+        // Only create a section if there are items in that category
+        if (filtered.length > 0) {
+            const section = document.createElement('div');
+            section.style.width = "100%";
+            section.innerHTML = `<h2 style="color: #bc13fe; text-shadow: 0 0 10px #bc13fe; margin-top: 30px; font-family: 'Orbitron', sans-serif;">${cat}</h2>`;
+            container.appendChild(section);
 
-        filtered.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'game-card';
-            const isUrl = item.thumb.startsWith('http');
-            const iconHtml = isUrl 
-                ? `<img src="${item.thumb}" onerror="this.src='https://via.placeholder.com/150'">`
-                : `<div style="font-size: 80px; padding: 20px;">${item.thumb}</div>`;
-
-           card.onclick = () => {
-                // This creates a new 'about:blank' tab
-                const win = window.open('about:blank', '_blank');
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
                 
-                // This embeds the site inside that blank tab using an iframe
-                win.document.body.style.margin = '0';
-                win.document.body.style.height = '100vh';
-                const iframe = win.document.createElement('iframe');
-                iframe.style.border = 'none';
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.src = item.url;
-                win.document.body.appendChild(iframe);
-            };
-            container.appendChild(card);
-        });
-    });
-}
-            card.onclick = () => window.open(item.url, '_blank');
-            container.appendChild(card);
-        });
-    });
-}
-// Search Logic
-if (searchBar) {
-    searchBar.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            let val = searchBar.value.trim();
-            if (val.includes('.')) {
-                if (!val.startsWith('http')) val = 'https://' + val;
-             window.open(val, '_blank');
-            }
+                const isUrl = item.thumb.startsWith('http');
+                const iconHtml = isUrl 
+                    ? `<img src="${item.thumb}" onerror="this.src='https://via.placeholder.com/150'">`
+                    : `<div style="font-size: 80px; padding: 20px;">${item.thumb}</div>`;
+
+                card.innerHTML = `${iconHtml}<h3 class="card-title">${item.title}</h3>`;
+                
+                // The about:blank Cloaker Logic
+                card.onclick = () => {
+                    const win = window.open('about:blank', '_blank');
+                    win.document.body.style.margin = '0';
+                    win.document.body.style.height = '100vh';
+                    const iframe = win.document.createElement('iframe');
+                    iframe.style.border = 'none';
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.src = item.url;
+                    win.document.body.appendChild(iframe);
+                };
+                container.appendChild(card);
+            });
         }
     });
 }
-// This function calculates the time and updates the screen
-function startClock() {
-    const clockElement = document.getElementById('digital-clock');
-    
-    // Check if the clock exists on the page
-    if (clockElement) {
-        setInterval(() => {
-            const now = new Date();
-            
-            // Format time as HH:MM:SS
-            let hours = String(now.getHours()).padStart(2, '0');
-            let minutes = String(now.getMinutes()).padStart(2, '0');
-            let seconds = String(now.getSeconds()).padStart(2, '0');
-            
-            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
-        }, 1000); // This makes it update every 1 second
-    }
-}
 
-// Kick off the clock
+// 2. Clock Logic (Fixed Brackets)
+function startClock() {
+    const clockElement = document.getElementById('clock');
+    if (!clockElement) return;
+    
+    setInterval(() => {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }, 1000);
+}
 startClock();
-// The Panic Button Script
+
+// 3. Panic Button (Canvas Redirect)
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-        // This instantly redirects the tab to Canvas
         window.location.href = 'https://canvas.instructure.com/login/canvas';
     }
 });
