@@ -1,121 +1,41 @@
-/* 1. Main Page Setup */
-body {
-    background-color: #0d001a; /* Deep purple background to match your image */
-    color: #e0b0ff; /* Light purple text */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* The Main Container should be a column to stack the headers */
+.container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
-    padding-top: 40px;
-    margin: 0;
-}
-
-/* 2. The Glowing LED Clock */
-.led-clock {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 90px; 
-    color: #bc13fe; /* Bright Neon Purple */
-    text-shadow: 
-        0 0 10px #bc13fe, 
-        0 0 20px #bc13fe, 
-        0 0 40px #bc13fe; /* This creates the thick glow from your photo */
-    margin: 20px 0;
-    font-weight: bold;
-}
-
-/* 3. The Search Bar */
-#search-bar {
-    background: #1a0033;
-    border: 2px solid #bc13fe;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 30px;
-    width: 450px;
-    outline: none;
-    box-shadow: 0 0 15px #bc13fe;
-    font-size: 16px;
-    margin-bottom: 40px;
-}
-
-/* 4. Game Card Container (The bridge we fixed) */
-#game-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
     width: 90%;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
-/* 5. Individual Game Cards */
-.game-card {
-    background: #1a0033;
-    border: 1px solid #bc13fe;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.game-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #bc13fe;
-}
-
-.game-card img {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-/* Hide titles by default */
-.card-title {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-/* Show titles when you hover the card */
-.game-card:hover .card-title {
-    opacity: 1;
-}
-.tab-container {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.tab-btn {
-    background: #1a1a1a;
-    border: 1px solid #bc13fe;
-    color: #bc13fe;
-    padding: 10px 20px;
-    font-family: 'Orbitron', sans-serif;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 5px;
-    text-shadow: 0 0 5px #bc13fe;
-}
-
-.tab-btn:hover, .tab-btn.active {
-    background: #bc13fe;
-    color: white;
-    .category-title {
+/* The Category Title */
+.category-title {
     width: 100%;
     color: #bc13fe;
     text-shadow: 0 0 10px #bc13fe;
     font-family: 'Orbitron', sans-serif;
-    margin: 40px 0 20px 0;
+    margin: 40px 0 15px 0;
     text-align: left;
     border-bottom: 2px solid #bc13fe;
-    padding-bottom: 10px;
 }
 
+/* THE FAT ROW: This makes icons stack when they run out of space */
 .category-group {
     display: flex;
-    flex-wrap: wrap; /* This makes it a 'fat' block instead of a skinny line */
+    flex-wrap: wrap; /* CRITICAL: Allows cards to wrap to next line */
+    justify-content: flex-start; /* Aligns them to the left */
     gap: 20px;
     width: 100%;
-    justify-content: center;
+    margin-bottom: 50px;
+    padding: 10px;
 }
-    box-shadow: 0 0 15px #bc13fe;
+
+/* Individual Card Size */
+.game-card {
+    width: 140px; /* Adjust this to make the 'Fat Row' wider or thinner */
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid #bc13fe;
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s;
+    cursor: pointer;
 }
