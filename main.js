@@ -1,66 +1,63 @@
-const container = document.getElementById('games-container');
-const searchInput = document.getElementById('searchInput');
+let allData = [];
+let currentCategory = 'Games';
 
-// 1. Fetch and Render
+// 1. Fetch Data
 fetch('games.json')
     .then(res => res.json())
     .then(data => {
-        renderCards(data);
-        searchInput.addEventListener('input', () => {
-            const term = searchInput.value.toLowerCase();
-            renderCards(data.filter(item => item.title.toLowerCase().includes(term)));
-        });
+        allData = data;
+        renderCards(allData);
     });
 
+// 2. Tab Switcher Function
+function filterTab(category) {
+    currentCategory = category;
+    
+    // Update active button styling
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.innerText.includes(category.split(' ')[0])) btn.classList.add('active');
+    });
+
+    renderCards(allData);
+}
+
 function renderCards(data) {
+    const container = document.getElementById('games-container');
     if (!container) return;
     container.innerHTML = "";
-    
-    const categories = ["Games", "Social Media", "Movies", "Proxies"];
 
-    categories.forEach(cat => {
-        const filtered = data.filter(item => item.category === cat);
-        if (filtered.length > 0) {
-            const h2 = document.createElement('h2');
-            h2.style = "color: #bc13fe; text-shadow: 0 0 10px #bc13fe; margin-top: 30px; font-family: 'Orbitron', sans-serif;";
-            h2.textContent = cat;
-            container.appendChild(h2);
+    // Only show items matching the selected tab
+    const filtered = data.filter(item => item.category === currentCategory);
 
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                
-                // Fixed Icon Logic: If image fails, show a generic icon instead of an error
-                const iconHtml = item.thumb.startsWith('http') 
-                    ? `<img src="${item.thumb}" onerror="this.src='https://raw.githubusercontent.com/TristanLeila/App-Icons/main/Steam.png'">`
-                    : `<div style="font-size: 50px; padding: 10px;">🎮</div>`;
-
-                card.innerHTML = `${iconHtml}<h3 class="card-title">${item.title}</h3>`;
-                
-                // Standard Open: This fixes the "Refused to Connect" error
-                card.onclick = () => {
-                    window.open(item.url, '_blank');
-                };
-                container.appendChild(card);
-            });
-        }
+    filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+            ${item.thumb.startsWith('http') ? `<img src="${item.thumb}">` : `<div style="font-size:80px;padding:20px;">🎮</div>`}
+            <h3 class="card-title">${item.title}</h3>`;
+        
+        card.onclick = () => window.open(item.url, '_blank');
+        container.appendChild(card);
     });
 }
 
-// 2. Clock Logic
+// 3. Search logic (Updated to work with tabs)
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const searched = allData.filter(item => 
+        item.category === currentCategory && 
+        item.title.toLowerCase().includes(term)
+    );
+    renderCards(searched);
+});
+
+// 4. Clock & Panic remain same
 setInterval(() => {
     const clock = document.getElementById('clock');
-    if (clock) {
-        const now = new Date();
-        clock.textContent = now.getHours().toString().padStart(2, '0') + ":" + 
-                           now.getMinutes().toString().padStart(2, '0') + ":" + 
-                           now.getSeconds().toString().padStart(2, '0');
-    }
+    if (clock) clock.textContent = new Date().toLocaleTimeString();
 }, 1000);
 
-// 3. Panic Button (Canvas)
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        window.location.href = 'https://canvas.instructure.com/login/canvas';
-    }
+    if (e.key === 'Escape') window.location.href = 'https://canvas.instructure.com/login/canvas';
 });
