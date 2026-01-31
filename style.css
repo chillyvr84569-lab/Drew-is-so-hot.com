@@ -1,55 +1,70 @@
+/* 1. Main Page Setup */
 body {
+    background-color: #0d001a; /* Deep purple background to match your image */
+    color: #e0b0ff; /* Light purple text */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
     margin: 0;
-    padding: 20px;
 }
 
-header {
-    text-align: center;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #ddd;
+/* 2. The Glowing LED Clock */
+.led-clock {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 90px; 
+    color: #bc13fe; /* Bright Neon Purple */
+    text-shadow: 
+        0 0 10px #bc13fe, 
+        0 0 20px #bc13fe, 
+        0 0 40px #bc13fe; /* This creates the thick glow from your photo */
+    margin: 20px 0;
+    font-weight: bold;
 }
 
+/* 3. The Search Bar */
 #search-bar {
-    width: 60%;
-    padding: 12px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    margin-top: 15px;
+    background: #1a0033;
+    border: 2px solid #bc13fe;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    width: 450px;
+    outline: none;
+    box-shadow: 0 0 15px #bc13fe;
+    font-size: 16px;
+    margin-bottom: 40px;
 }
 
+/* 4. Game Card Container (The bridge we fixed) */
 #game-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
-    padding: 40px 0;
+    width: 90%;
+    max-width: 1000px;
 }
 
+/* 5. Individual Game Cards */
 .game-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
+    background: #1a0033;
+    border: 1px solid #bc13fe;
+    border-radius: 15px;
+    padding: 15px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #bc13fe;
 }
 
 .game-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
     margin-bottom: 10px;
-}
-
-.game-card h3 {
-    margin: 10px 0 0;
-    font-size: 1.1em;
 }
