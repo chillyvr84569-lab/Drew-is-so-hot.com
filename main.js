@@ -1,10 +1,11 @@
 const container = document.getElementById('game-container');
 const searchBar = document.getElementById('search-bar');
 
+// Fetches your perfect JSON from Screenshot 215842
 fetch('./games.json')
     .then(res => res.json())
     .then(data => renderCards(data))
-    .catch(err => console.error("Data Load Error:", err));
+    .catch(err => console.error("Archive Load Error:", err));
 
 function renderCards(data) {
     if (!container) return;
@@ -13,6 +14,7 @@ function renderCards(data) {
         const card = document.createElement('div');
         card.className = 'game-card';
         
+        // Correctly handles the Camera Emoji or URL images
         const isUrl = item.thumb.startsWith('http');
         const iconHtml = isUrl 
             ? `<img src="${item.thumb}" onerror="this.src='https://via.placeholder.com/150'">` 
@@ -25,7 +27,7 @@ function renderCards(data) {
 }
 
 function openStealth(url) {
-    // This fixes the Screenshot 214905 error by opening a new cloaked tab
+    // Opens a new blank tab to fix Screenshot 214905 and hide from GoGuardian
     const win = window.open('about:blank', '_blank');
     if (win) {
         win.opener = null;
@@ -40,11 +42,12 @@ function openStealth(url) {
             </html>
         `);
     } else {
+        // Fallback if the browser blocks the popup
         window.location.href = url;
     }
 }
 
-// Proxy Search Logic
+// Search bar logic
 if (searchBar) {
     searchBar.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -57,7 +60,7 @@ if (searchBar) {
     });
 }
 
-// Panic Key
+// Panic Key: Press '~' to go to Classroom instantly
 window.addEventListener('keydown', (e) => {
     if (e.key === '~') window.location.replace("https://classroom.google.com");
 });
