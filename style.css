@@ -99,5 +99,23 @@ body {
 .tab-btn:hover, .tab-btn.active {
     background: #bc13fe;
     color: white;
+    .category-title {
+    width: 100%;
+    color: #bc13fe;
+    text-shadow: 0 0 10px #bc13fe;
+    font-family: 'Orbitron', sans-serif;
+    margin: 40px 0 20px 0;
+    text-align: left;
+    border-bottom: 2px solid #bc13fe;
+    padding-bottom: 10px;
+}
+
+.category-group {
+    display: flex;
+    flex-wrap: wrap; /* This makes it a 'fat' block instead of a skinny line */
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
     box-shadow: 0 0 15px #bc13fe;
 }
