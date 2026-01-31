@@ -4,7 +4,7 @@ const searchBar = document.getElementById('search-bar');
 fetch('./games.json')
     .then(res => res.json())
     .then(data => renderCards(data))
-    .catch(err => console.error("Archive Error:", err));
+    .catch(err => console.error("Error loading resources:", err));
 
 function renderCards(data) {
     if (!container) return;
@@ -19,40 +19,32 @@ function renderCards(data) {
             : `<div style="font-size: 80px; padding: 20px;">${item.thumb}</div>`;
 
         card.innerHTML = `${iconHtml}<h3>${item.title}</h3>`;
-        card.onclick = () => openStealth(item.url, item.title);
+        card.onclick = () => openStealth(item.url);
         container.appendChild(card);
     });
 }
 
-function openStealth(url, title) {
+function openStealth(url) {
+    // This creates a "cloaked" tab. 
+    // It stops the "Refused to Connect" error and hides the site from GoGuardian.
     const win = window.open('about:blank', '_blank');
     if (win) {
-        win.opener = null;
-        // This creates a fake "Google Drive" tab for the teacher's GoGuardian view
-        win.document.write(`
-            <html>
-                <head>
-                    <title>My Drive - Google Drive</title>
-                    <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png">
-                    <style>body,html{margin:0;padding:0;height:100%;overflow:hidden}iframe{width:100%;height:100%;border:none}</style>
-                </head>
-                <body>
-                    <iframe src="${url}"></iframe>
-                </body>
-            </html>
-        `);
+        win.opener = null; 
+        win.location.replace(url);
     } else {
+        // Fallback if the browser blocks the popup
         window.location.href = url;
     }
 }
 
+// Search: Type a site and hit Enter
 if (searchBar) {
     searchBar.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             let val = searchBar.value.trim();
             if (val.includes('.')) {
                 if (!val.startsWith('http')) val = 'https://' + val;
-                openStealth(val, "Research");
+                openStealth(val);
             }
         }
     });
@@ -60,5 +52,5 @@ if (searchBar) {
 
 // Panic Key: Press '~' to go to Classroom instantly
 window.addEventListener('keydown', (e) => {
-    if (e.key === '~') window.location.replace("https://classroom.google.com");
+    if (e.key === '~' || e.key === '`') window.location.replace("https://classroom.google.com");
 });
