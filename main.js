@@ -30,7 +30,24 @@ function renderCards(data) {
                 ? `<img src="${item.thumb}" onerror="this.src='https://via.placeholder.com/150'">`
                 : `<div style="font-size: 80px; padding: 20px;">${item.thumb}</div>`;
 
-            card.innerHTML = `${iconHtml}<h3 class="card-title">${item.title}</h3>`;
+           card.onclick = () => {
+                // This creates a new 'about:blank' tab
+                const win = window.open('about:blank', '_blank');
+                
+                // This embeds the site inside that blank tab using an iframe
+                win.document.body.style.margin = '0';
+                win.document.body.style.height = '100vh';
+                const iframe = win.document.createElement('iframe');
+                iframe.style.border = 'none';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.src = item.url;
+                win.document.body.appendChild(iframe);
+            };
+            container.appendChild(card);
+        });
+    });
+}
             card.onclick = () => window.open(item.url, '_blank');
             container.appendChild(card);
         });
