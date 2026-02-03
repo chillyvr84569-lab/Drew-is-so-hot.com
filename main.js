@@ -19,18 +19,15 @@ function openInCloakedTab(url, title) {
         window.open(url, '_blank');
         return;
     }
-
-    win.document.title = title || "Google Docs";
+    win.document.title = "Google Docs";
     const body = win.document.body;
     body.style.margin = '0';
     body.style.height = '100vh';
-
     const iframe = win.document.createElement('iframe');
     iframe.style.border = 'none';
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.src = url;
-
     body.appendChild(iframe);
 }
 
@@ -38,12 +35,10 @@ function openInCloakedTab(url, title) {
 function renderCards(data) {
     if (!container) return;
     container.innerHTML = "";
-    
     const categories = ["Games", "Social Media", "Movies", "Proxies"];
 
     categories.forEach(cat => {
         const filtered = data.filter(item => item.category === cat);
-        
         if (filtered.length > 0) {
             const header = document.createElement('h2');
             header.className = "category-title";
@@ -56,39 +51,31 @@ function renderCards(data) {
             filtered.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'game-card';
-                
                 const iconHtml = (item.thumb && item.thumb.startsWith('http')) 
                     ? `<img src="${item.thumb}" class="card-img" onerror="this.style.display='none'">` 
                     : `<div style="font-size: 20px;">📄</div>`;
 
-                card.innerHTML = `
-                    <div class="icon-box">${iconHtml}</div>
-                    <div class="card-title">${item.title}</div>
-                `;
+                card.innerHTML = `<div class="icon-box">${iconHtml}</div><div class="card-title">${item.title}</div>`;
                 
-                // FIXED HYBRID LOGIC: Adds Instagram and Snapchat to the bypass list
+                // HYBRID LOGIC: Open sensitive sites normally, everything else cloaked
                 card.onclick = () => {
                     const sensitiveSites = [
                         'script.google.com', 
                         'now.gg', 
-                        'google.com', 
-                        'translate.google.com',
-                        'instagram.com',
-                        'snapchat.com'
+                        'instagram.com', 
+                        'snapchat.com',
+                        'yolearn.org' // Ensures Truffled Proxy works
                     ];
                     const isSensitive = sensitiveSites.some(site => item.url.includes(site));
 
                     if (isSensitive) {
-                        // Open in a new tab to avoid "Refused to Connect"
                         window.open(item.url, '_blank');
                     } else {
-                        // Use the about:blank cloaker for everything else
                         openInCloakedTab(item.url, item.title);
                     }
                 };
                 group.appendChild(card);
             });
-            
             container.appendChild(group);
         }
     });
@@ -100,7 +87,7 @@ setInterval(() => {
     if (clock) clock.textContent = new Date().toLocaleTimeString();
 }, 1000);
 
-// 5. Panic Button
+// 5. Panic Button (Escape)
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') window.location.href = 'https://canvas.instructure.com/login/canvas';
 });
