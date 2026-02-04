@@ -1,93 +1,58 @@
-const container = document.getElementById('games-container');
-const searchInput = document.getElementById('searchInput');
+// Function to load and display games from games.json
+async function loadGames() {
+    try {
+        const response = await fetch('games.json');
+        const games = await response.json();
+        const container = document.getElementById('game-container');
+        
+        if (!container) return;
+        container.innerHTML = '';
 
-// 1. Load Data
-fetch('games.json')
-    .then(res => res.json())
-    .then(data => {
-        renderCards(data);
-        searchInput.addEventListener('input', () => {
-            const term = searchInput.value.toLowerCase();
-            renderCards(data.filter(item => item.title.toLowerCase().includes(term)));
+        games.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = `
+                <img src="${game.thumb}" alt="${game.title}">
+                <div class="game-info">
+                    <h3>${game.title}</h3>
+                    <span class="category">${game.category}</span>
+                </div>
+            `;
+            // Every click now triggers the stealth launcher
+            card.onclick = () => launchStealth(game.url);
+            container.appendChild(card);
         });
-    });
-
-// 2. The Stealth Cloaker Function
-function openInCloakedTab(url, title) {
-    const win = window.open('about:blank', '_blank');
-    if (!win) {
-        window.open(url, '_blank');
-        return;
+    } catch (err) {
+        console.error("Failed to load games:", err);
     }
-    win.document.title = "Google Docs";
-    const body = win.document.body;
-    body.style.margin = '0';
-    body.style.height = '100vh';
-    const iframe = win.document.createElement('iframe');
-    iframe.style.border = 'none';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.src = url;
-    body.appendChild(iframe);
 }
 
-// 3. Render Grid
-function renderCards(data) {
-    if (!container) return;
-    container.innerHTML = "";
-    const categories = ["Games", "Social Media", "Movies", "Proxies"];
+// The core stealth function that forces about:blank for EVERYTHING
+function launchStealth(url) {
+    // Create the new about:blank window
+    const win = window.open('about:blank', '_blank');
+    
+    if (win) {
+        // Remove all margins from the new window
+        win.document.body.style.margin = '0';
+        win.document.body.style.height = '100vh';
+        win.document.body.style.overflow = 'hidden';
 
-    categories.forEach(cat => {
-        const filtered = data.filter(item => item.category === cat);
-        if (filtered.length > 0) {
-            const header = document.createElement('h2');
-            header.className = "category-title";
-            header.textContent = cat;
-            container.appendChild(header);
+        // Create the iframe that holds the site
+        const iframe = win.document.createElement('iframe');
+        iframe.style.border = 'none';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.margin = '0';
+        iframe.src = url;
 
-            const group = document.createElement('div');
-            group.className = "fat-row-grid";
-
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                const iconHtml = (item.thumb && item.thumb.startsWith('http')) 
-                    ? `<img src="${item.thumb}" class="card-img" onerror="this.style.display='none'">` 
-                    : `<div style="font-size: 20px;">📄</div>`;
-
-                card.innerHTML = `<div class="icon-box">${iconHtml}</div><div class="card-title">${item.title}</div>`;
-                
-                // HYBRID LOGIC: Open sensitive sites normally, everything else cloaked
-                card.onclick = () => {
-                    const sensitiveSites = [
-                        'script.google.com', 
-                        'now.gg', 
-                        'instagram.com', 
-                        'snapchat.com',
-                        'yolearn.org' // Ensures Truffled Proxy works
-                    ];
-                    const isSensitive = sensitiveSites.some(site => item.url.includes(site));
-
-                    if (isSensitive) {
-                        window.open(item.url, '_blank');
-                    } else {
-                        openInCloakedTab(item.url, item.title);
-                    }
-                };
-                group.appendChild(card);
-            });
-            container.appendChild(group);
-        }
-    });
+        // Inject the iframe into the about:blank page
+        win.document.body.appendChild(iframe);
+    } else {
+        // Fallback if the browser blocks the popup
+        alert("Please allow popups for this site to use stealth mode!");
+    }
 }
 
-// 4. Boring Clock
-setInterval(() => {
-    const clock = document.getElementById('clock');
-    if (clock) clock.textContent = new Date().toLocaleTimeString();
-}, 1000);
-
-// 5. Panic Button (Escape)
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') window.location.href = 'https://canvas.instructure.com/login/canvas';
-});
+// Start the app
+loadGames();
