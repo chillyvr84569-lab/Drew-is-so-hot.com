@@ -1,26 +1,37 @@
-/* This makes the category section wide and the icons wrap underneath */
-.fat-row-grid {
-    display: flex;
-    flex-wrap: wrap; /* This makes the row 'fat' by allowing icons to stack */
-    gap: 20px;
-    width: 100%;
-    justify-content: center; /* Centers the icons in the fat block */
-    margin-bottom: 40px;
+/* 1. Global Reset & Variables */
+:root {
+    --bg-color: #0a0a0c;          /* Almost black with a hint of purple */
+    --card-bg: #16161a;           /* Dark card background */
+    --text-main: #fffffe;         /* White text */
+    --text-muted: #94a1b2;        /* Gray text for categories */
+    --accent: #d53af5;            /* Bright neon purple */
+    --accent-glow: rgba(213, 58, 245, 0.3); /* The purple glow */
+    --border: #2b2b33;
 }
 
-.category-title {
-    width: 100%;
-    color: #bc13fe;
-    text-shadow: 0 0 10px #bc13fe;
-    font-family: 'Orbitron', sans-serif;
-    text-align: left;
-    margin: 30px 0 15px 0;
-    border-bottom: 1px solid #bc13fe;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Fixes the 'Exploding Icons' from your video */
-.card-img {
-    max-width: 70px;
-    max-height: 70px;
-    object-fit: contain;
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
+
+/* 2. The Header - Clean & Professional */
+header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: radial-gradient(circle at top, #1e1e26 0%, var(--bg-color) 70%);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -
