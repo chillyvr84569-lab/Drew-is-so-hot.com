@@ -1,80 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('games-grid');
     const searchBar = document.getElementById('search');
+    const themeToggle = document.getElementById('theme-toggle');
+    const filterBtns = document.querySelectorAll('.filter-btn');
     let games = [];
+    let currentCategory = 'all';
 
-    // 1. Fetch the games data from the JSON file
+    // 1. Fetch data
     fetch('games.json')
-        .then(response => {
-            if (!response.ok) throw new Error("Failed to load games.json");
-            return response.json();
-        })
+        .then(res => res.json())
         .then(data => {
             games = data;
-            displayGames(games); // Initial load of all games
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            gameContainer.innerHTML = '<p style="color: white; text-align: center;">Error loading games. Check if games.json is in the archive folder!</p>';
+            displayGames(games);
         });
 
-    // 2. Efficient Search Function
-    searchBar.addEventListener('keyup', (e) => {
-        const searchString = e.target.value.toLowerCase();
-        const filteredGames = games.filter(game => {
-            return game.title.toLowerCase().includes(searchString);
+    // 2. Filter Logic
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            btn.classList.add('active');
+            currentCategory = btn.dataset.category;
+            filterAndDisplay();
         });
-        displayGames(filteredGames);
     });
 
-    // 3. Function to display games (Optimized for speed)
-    function displayGames(gamesList) {
-        gameContainer.innerHTML = ''; // Clear current grid
-        
-        // Use a "Fragment" to prevent page lag while building
-        const fragment = document.createDocumentFragment();
+    searchBar.addEventListener('keyup', filterAndDisplay);
 
-        gamesList.forEach(game => {
-            const card = document.createElement('div');
-            card.classList.add('game-card');
-
-            // HTML for each card
-            card.innerHTML = `
-                <div class="card-content">
-                    <h3>${game.title}</h3>
-                    <button class="play-btn">Play Now</button>
-                </div>
-            `;
-
-            // Add the "About:Blank" Cloaking click event
-            card.querySelector('.play-btn').addEventListener('click', () => {
-                openInAboutBlank(game.url);
-            });
-
-            fragment.appendChild(card);
+    function filterAndDisplay() {
+        const searchTerm = searchBar.value.toLowerCase();
+        const filtered = games.filter(game => {
+            const matchesSearch = game.title.toLowerCase().includes(searchTerm);
+            const matchesCategory = currentCategory === 'all' || game.category === currentCategory;
+            return matchesSearch && matchesCategory;
         });
-
-        gameContainer.appendChild(fragment);
+        displayGames(filtered);
     }
 
-    // 4. The "About:Blank" Cloaker (Hides from History)
-    function openInAboutBlank(url) {
+    // 3. Display with About:Blank Cloaker
+    function displayGames(list) {
+        gameContainer.innerHTML = '';
+        list.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = `
+                <img src="${game.thumb}" alt="${game.title}" onerror="this.src='https://via.placeholder.com/150'">
+                <h3>${game.title}</h3>
+                <button onclick="openGame('${game.url}')">Play</button>
+            `;
+            gameContainer.appendChild(card);
+        });
+    }
+
+    window.openGame = (url) => {
         const win = window.open('about:blank', '_blank');
-        if (!win) {
-            alert("Pop-up blocked! Please allow pop-ups for this site.");
-            return;
-        }
-
         const iframe = win.document.createElement('iframe');
-        iframe.style.width = '100vw';
-        iframe.style.height = '100vh';
-        iframe.style.border = 'none';
-        iframe.style.position = 'fixed';
-        iframe.style.top = '0';
-        iframe.style.left = '0';
+        iframe.style.cssText = "width:100vw; height:100vh; border:none; position:fixed; top:0; left:0;";
         iframe.src = url;
-
-        win.document.body.style.margin = '0';
         win.document.body.appendChild(iframe);
-    }
+    };
+
+    // 4. Theme Toggle
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+    });
 });
