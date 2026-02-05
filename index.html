@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Developer Portfolio</title>
+    <title>Student Dev Portfolio</title>
     <style>
-        body { background: #0a0a0c; color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
-        .card { border: 1px solid #333; padding: 40px; border-radius: 20px; background: #16161a; max-width: 400px; }
-        h1 { color: #d53af5; margin: 0; font-size: 2rem; }
-        p { color: #94a1b2; margin: 20px 0; line-height: 1.5; }
-        .btn { display: inline-block; padding: 12px 24px; background: #d53af5; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #b02ecb; transform: translateY(-2px); }
+        :root { --p: #d53af5; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
+        .card { border: 1px solid #333; padding: 40px; border-radius: 20px; background: #16161a; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 400px; }
+        h1 { color: var(--p); margin: 0; font-size: 2rem; }
+        p { color: #94a1b2; margin: 20px 0; }
+        /* CRITICAL: Use the leading slash to prevent the 404 loop */
+        .btn { display: inline-block; padding: 12px 24px; background: var(--p); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(213, 58, 245, 0.4); }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Student Portfolio</h1>
-        <p>I am a student developer learning HTML, CSS, and JavaScript. This site hosts my web development projects and experiments.</p>
-      <a href="https://district-resource-archive.vercel.app/archive/index.html" class="btn">View My Projects</a>
+        <h1>Student Dev Portfolio</h1>
+        <p>Learning Web Development & UI Design. This site hosts my web development projects and experiments.</p>
+        <a href="/archive/index.html" class="btn">View Project Archive</a>
     </div>
 </body>
 </html>
