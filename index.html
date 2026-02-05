@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Resource Archive</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        body { background: #0f0f0f; color: #eee; font-family: sans-serif; margin: 0; text-align: center; }
-        header { padding: 40px 20px; border-bottom: 1px solid #333; }
-        input { padding: 12px; width: 80%; max-width: 500px; border-radius: 8px; border: 1px solid #444; background: #222; color: #fff; margin-top: 15px; }
-        #game-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 30px; }
-        .game-card { background: #1a1a1a; padding: 15px; border-radius: 10px; cursor: pointer; border: 1px solid #333; }
-        .game-card img { width: 100%; border-radius: 5px; height: 120px; object-fit: cover; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Developer Portfolio</title>
+    <style>
+        :root { --p: #d53af5; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
+        .card { border: 1px solid #333; padding: 40px; border-radius: 20px; background: #16161a; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: var(--p); margin: 0; }
+        p { color: #94a1b2; margin: 20px 0; }
+        .btn { display: inline-block; padding: 12px 24px; background: var(--p); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(213, 58, 245, 0.4); }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Academic Resource Archive</h1>
-        <p>Reference Material Database for District Students</p>
-        <input type="text" id="game-search" placeholder="Search Database...">
-    </header>
-    <main><div id="game-container"></div></main>
-    <script src="main.js"></script> </body>
+    <div class="card">
+        <h1>Student Dev Portfolio</h1>
+        <p>Learning Web Development & UI Design.</p>
+        <a href="archive/index.html" class="btn">View Project Archive</a>
+    </div>
+</body>
 </html>
