@@ -1,88 +1,80 @@
-/**
- * Academic Resource Archive - Project Module
- * Handles dynamic data fetching, search filtering, and stealth deployment.
- */
+document.addEventListener('DOMContentLoaded', () => {
+    const gameContainer = document.getElementById('games-grid');
+    const searchBar = document.getElementById('search');
+    let games = [];
 
-let allGames = [];
+    // 1. Fetch the games data from the JSON file
+    fetch('games.json')
+        .then(response => {
+            if (!response.ok) throw new Error("Failed to load games.json");
+            return response.json();
+        })
+        .then(data => {
+            games = data;
+            displayGames(games); // Initial load of all games
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            gameContainer.innerHTML = '<p style="color: white; text-align: center;">Error loading games. Check if games.json is in the archive folder!</p>';
+        });
 
-// Sites that require direct tab access to prevent iframe freezing/glitches
-const directLaunchRequired = [
-    "instagram.com",
-    "snapchat.com",
-    "tiktok.com",
-    "yolearn.org", // Truffled
-    "rammerhead",
-    "discord.com"
-];
-
-// 1. Initialize Database - Fetches from the same folder (/archive)
-async function initializeDatabase() {
-    try {
-        console.log("Fetching resource manifest...");
-        const response = await fetch('games.json');
-        
-        if (!response.ok) throw new Error("Manifest not found in local directory");
-        
-        allGames = await response.json();
-        renderArchive(allGames);
-    } catch (error) {
-        console.error("Initialization Failed:", error);
-        const container = document.getElementById('game-container');
-        if (container) container.innerHTML = `<p style="color:red">Archive load error: ${error.message}</p>`;
-    }
-}
-
-// 2. UI Renderer - Dynamically builds the grid
-function renderArchive(data) {
-    const container = document.getElementById('game-container');
-    if (!container) return;
-
-    container.innerHTML = data.map(item => `
-        <div class="game-card" onclick="deployResource('${item.url}')">
-            <img src="${item.thumb}" alt="${item.title}" loading="lazy">
-            <div class="game-info">
-                <h3>${item.title}</h3>
-                <span class="category">${item.category}</span>
-            </div>
-        </div>
-    `).join('');
-}
-
-// 3. Smart Deployment - Fixes glitches and enables stealth
-function deployResource(url) {
-    // Check if the site is known to break inside iframes
-    const isComplex = directLaunchRequired.some(site => url.includes(site));
-
-    if (isComplex) {
-        // Direct launch for socials/proxies to ensure 100% performance
-        window.open(url, '_blank');
-    } else {
-        // Stealth launch for games (cloaked in about:blank)
-        const stealthWin = window.open('about:blank', '_blank');
-        if (stealthWin) {
-            stealthWin.document.body.style.margin = '0';
-            stealthWin.document.body.style.height = '100vh';
-            
-            const frame = stealthWin.document.createElement('iframe');
-            frame.style = "border:none;width:100%;height:100%;margin:0;display:block;";
-            frame.src = url;
-            stealthWin.document.body.appendChild(frame);
-        }
-    }
-}
-
-// 4. Search Filter Logic
-const searchBar = document.getElementById('game-search');
-if (searchBar) {
-    searchBar.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        const filtered = allGames.filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.category.toLowerCase().includes(query)
-        );
-        renderArchive(filtered);
+    // 2. Efficient Search Function
+    searchBar.addEventListener('keyup', (e) => {
+        const searchString = e.target.value.toLowerCase();
+        const filteredGames = games.filter(game => {
+            return game.title.toLowerCase().includes(searchString);
+        });
+        displayGames(filteredGames);
     });
-}
 
-// Boot up the system
-initializeDatabase();
+    // 3. Function to display games (Optimized for speed)
+    function displayGames(gamesList) {
+        gameContainer.innerHTML = ''; // Clear current grid
+        
+        // Use a "Fragment" to prevent page lag while building
+        const fragment = document.createDocumentFragment();
+
+        gamesList.forEach(game => {
+            const card = document.createElement('div');
+            card.classList.add('game-card');
+
+            // HTML for each card
+            card.innerHTML = `
+                <div class="card-content">
+                    <h3>${game.title}</h3>
+                    <button class="play-btn">Play Now</button>
+                </div>
+            `;
+
+            // Add the "About:Blank" Cloaking click event
+            card.querySelector('.play-btn').addEventListener('click', () => {
+                openInAboutBlank(game.url);
+            });
+
+            fragment.appendChild(card);
+        });
+
+        gameContainer.appendChild(fragment);
+    }
+
+    // 4. The "About:Blank" Cloaker (Hides from History)
+    function openInAboutBlank(url) {
+        const win = window.open('about:blank', '_blank');
+        if (!win) {
+            alert("Pop-up blocked! Please allow pop-ups for this site.");
+            return;
+        }
+
+        const iframe = win.document.createElement('iframe');
+        iframe.style.width = '100vw';
+        iframe.style.height = '100vh';
+        iframe.style.border = 'none';
+        iframe.style.position = 'fixed';
+        iframe.style.top = '0';
+        iframe.style.left = '0';
+        iframe.src = url;
+
+        win.document.body.style.margin = '0';
+        win.document.body.appendChild(iframe);
+    }
+});
