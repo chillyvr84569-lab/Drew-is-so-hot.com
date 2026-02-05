@@ -1,37 +1,23 @@
-/* 1. Global Reset & Variables */
-:root {
-    --bg-color: #0a0a0c;          /* Almost black with a hint of purple */
-    --card-bg: #16161a;           /* Dark card background */
-    --text-main: #fffffe;         /* White text */
-    --text-muted: #94a1b2;        /* Gray text for categories */
-    --accent: #d53af5;            /* Bright neon purple */
-    --accent-glow: rgba(213, 58, 245, 0.3); /* The purple glow */
-    --border: #2b2b33;
-}
+:root { --bg: #0a0a0c; --card: #16161a; --text: #eee; --accent: #d53af5; }
+.light-theme { --bg: #f0f0f2; --card: #ffffff; --text: #1a1a1a; --accent: #a32bc2; }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; transition: 0.3s; }
+.container { max-width: 1000px; margin: auto; padding: 20px; text-align: center; }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.back-link { color: var(--accent); text-decoration: none; font-weight: bold; }
 
-/* 2. The Header - Clean & Professional */
-header {
-    text-align: center;
-    padding: 60px 20px 40px;
-    background: radial-gradient(circle at top, #1e1e26 0%, var(--bg-color) 70%);
-}
+.controls { margin-bottom: 20px; }
+#search { padding: 10px; width: 60%; border-radius: 5px; border: 1px solid #444; background: var(--card); color: var(--text); }
 
-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -
+.filter-group { margin-top: 15px; }
+.filter-btn { background: var(--card); color: var(--text); border: 1px solid #444; padding: 8px 15px; margin: 0 5px; cursor: pointer; border-radius: 5px; }
+.filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.game-card { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid #333; transition: 0.2s; }
+.game-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.game-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
+.play-btn { background: var(--accent); color: white; border: none; padding: 8px 0; width: 100%; margin-top: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+.theme-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; cursor: pointer; border-radius: 5px; }
