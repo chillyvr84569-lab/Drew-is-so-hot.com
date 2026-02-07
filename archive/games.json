@@ -6,7 +6,7 @@
     "category": "Proxies"
   },
   {
-    "title": "Obsidian",
+    "title": "Obsidian Proxy",
     "thumb": "https://raw.githubusercontent.com/TristanLeila/App-Icons/main/Safari.png",
     "url": "https://cv-1.ynet.io/",
     "category": "Proxies"
@@ -24,16 +24,94 @@
     "category": "Proxies"
   },
   {
-    "title": "Instagram (Mirror)",
-    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
-    "url": "https://piks.eu.org/",
-    "category": "Social Media"
+    "title": "1v1.LOL (Google Mirror)",
+    "thumb": "https://play-lh.googleusercontent.com/669n1T4M",
+    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/1v1/1v1.xml",
+    "category": "Shooters"
   },
   {
-    "title": "TikTok (Mirror)",
-    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg",
-    "url": "https://urlebird.com/",
-    "category": "Social Media"
+    "title": "Retro Bowl (Google Mirror)",
+    "thumb": "https://play-lh.googleusercontent.com/TM_f_vS38392S28LpXh7Py6H8H8",
+    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/retro-bowl/retro-bowl.xml",
+    "category": "Sports"
+  },
+  {
+    "title": "Slope (Google Mirror)",
+    "thumb": "https://raw.githubusercontent.com/tuhidul/Slope-Game/master/slope.png",
+    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/slope/slope.xml",
+    "category": "Arcade"
+  },
+  {
+    "title": "BitLife (Google Mirror)",
+    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-S/App-Icons/main/bitlife.png",
+    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/bitlife/bitlife.xml",
+    "category": "Simulation"
+  },
+  {
+    "title": "FNAF 1 (Google Mirror)",
+    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/fnaf.png",
+    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/fnaf/fnaf1.xml",
+    "category": "Horror"
+  },
+  {
+    "title": "Subway Surfers",
+    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/subway-surfers.png",
+    "url": "https://subway-surfers.github.io/",
+    "category": "Arcade"
+  },
+  {
+    "title": "Eaglercraft 1.8.8",
+    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/minecraft.png",
+    "url": "https://eaglercraft.com/mc/1.8.8/",
+    "category": "Adventure"
+  },
+  {
+    "title": "Cookie Clicker",
+    "thumb": "https://orteil.dashnet.org/cookieclicker/img/perfectCookie.png",
+    "url": "https://orteil.dashnet.org/cookieclicker/",
+    "category": "Idle"
+  },
+  {
+    "title": "Shell Shockers",
+    "thumb": "https://shellshock.io/favicon.ico",
+    "url": "https://shellshock.io/",
+    "category": "Shooters",
+    "direct": true
+  },
+  {
+    "title": "Krunker.io",
+    "thumb": "https://krunker.io/img/logo_3.png",
+    "url": "https://krunker.io/",
+    "category": "Shooters",
+    "direct": true
+  },
+  {
+    "title": "Agar.io",
+    "thumb": "https://agar.io/img/favicon.ico",
+    "url": "https://agar.io/",
+    "category": "IO Games",
+    "direct": true
+  },
+  {
+    "title": "Slither.io",
+    "thumb": "https://slither.io/s/favicon.png",
+    "url": "http://slither.io/",
+    "category": "IO Games",
+    "direct": true
+  },
+  {
+    "title": "Paper.io 2",
+    "thumb": "https://paper-io.com/favicon.ico",
+    "url": "https://paper-io.com/",
+    "category": "IO Games",
+    "direct": true
+  },
+  {
+    "title": "Instagram (Proxy Required)",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
+    "url": "https://instagram.com",
+    "category": "Social Media",
+    "direct": true
   },
   {
     "title": "Snapchat (Direct)",
@@ -43,57 +121,46 @@
     "direct": true
   },
   {
-    "title": "1v1.LOL (V6 Mirror)",
-    "thumb": "https://play-lh.googleusercontent.com/669n1T4M",
-    "url": "https://docs-google-com-0-opensocial-googleusercontent-com.metalfork.workers.dev/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/1v1/1v1.xml",
-    "category": "Games"
+    "title": "Discord (Direct)",
+    "thumb": "https://assets-global.website-files.com/6257adef93867e56f84d3092/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png",
+    "url": "https://discord.com/app",
+    "category": "Social Media",
+    "direct": true
   },
   {
-    "title": "Retro Bowl (Mirror)",
-    "thumb": "https://play-lh.googleusercontent.com/TM_f_vS38392S28LpXh7Py6H8H8",
-    "url": "https://game316.github.io/rb1/",
-    "category": "Games"
+    "title": "TikTok (Mirror)",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg",
+    "url": "https://urlebird.com/",
+    "category": "Social Media"
   },
   {
-    "title": "Slope (Mirror)",
-    "thumb": "https://raw.githubusercontent.com/tuhidul/Slope-Game/master/slope.png",
-    "url": "https://kdata1.com/2020/05/slope/",
-    "category": "Games"
+    "title": "Tunnel Rush",
+    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/tunnel-rush.png",
+    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/tunnel-rush/tunnel-rush.xml",
+    "category": "Arcade"
   },
   {
-    "title": "Subway Surfers",
-    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/subway-surfers.png",
-    "url": "https://subway-surfers.github.io/",
-    "category": "Games"
+    "title": "Basketball Stars",
+    "thumb": "https://img.poki.com/cdn-cgi/image/quality=78,width=204,height=204,fit=cover,f=auto/8c067831d16140641151610410609714.png",
+    "url": "https://basketball-stars.github.io/",
+    "category": "Sports"
   },
   {
-    "title": "Minecraft Classic",
-    "thumb": "https://classic.minecraft.net/assets/images/favicon.png",
-    "url": "https://classic.minecraft.net/",
-    "category": "Games"
+    "title": "Moto X3M",
+    "thumb": "https://img.poki.com/cdn-cgi/image/quality=78,width=204,height=204,fit=cover,f=auto/b91754093c8d451197771747806144e3.png",
+    "url": "https://moto-x3m.github.io/",
+    "category": "Racing"
   },
   {
     "title": "Tetris",
     "thumb": "https://tetris.com/favicon.ico",
     "url": "https://tetris.com/play-tetris",
-    "category": "Games"
+    "category": "Classic"
   },
   {
-    "title": "BitLife",
-    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/bitlife.png",
-    "url": "https://bitlifeonline.github.io/",
-    "category": "Games"
-  },
-  {
-    "title": "Eaglercraft (Minecraft)",
-    "thumb": "https://raw.githubusercontent.com/I-S-L-A-N-D-S/App-Icons/main/minecraft.png",
-    "url": "https://eaglercraft.com/mc/1.8.8/",
-    "category": "Games"
-  },
-  {
-    "title": "Cookie Clicker",
-    "thumb": "https://orteil.dashnet.org/cookieclicker/img/perfectCookie.png",
-    "url": "https://orteil.dashnet.org/cookieclicker/",
-    "category": "Games"
+    "title": "Pac-Man",
+    "thumb": "https://www.google.com/logos/2010/pacman10-hp.png",
+    "url": "https://www.google.com/logos/2010/pacman10-i.html",
+    "category": "Classic"
   }
 ]
