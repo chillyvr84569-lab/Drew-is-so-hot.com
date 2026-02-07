@@ -1,4 +1,5 @@
 [
+  /* --- PROXIES ( The Gateways ) --- */
   {
     "title": "Truffled Proxy",
     "thumb": "https://raw.githubusercontent.com/TristanLeila/App-Icons/main/Steam.png",
@@ -6,48 +7,180 @@
     "category": "Proxies"
   },
   {
-    "title": "Obsidian (New Proxy)",
+    "title": "Obsidian",
     "thumb": "https://raw.githubusercontent.com/TristanLeila/App-Icons/main/Safari.png",
     "url": "https://cv-1.ynet.io/",
     "category": "Proxies"
   },
   {
-    "title": "1v1.LOL (Google Mirror)",
-    "thumb": "https://play-lh.googleusercontent.com/669n1T4M",
-    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/1v1/1v1.xml",
-    "category": "Games"
+    "title": "Rammerhead (Fast)",
+    "thumb": "https://avatars.githubusercontent.com/u/86362337?s=200&v=4",
+    "url": "https://demo.rammerhead.org/",
+    "category": "Proxies"
   },
   {
-    "title": "Retro Bowl (Google Mirror)",
-    "thumb": "https://play-lh.googleusercontent.com/TM_f_vS38392S28LpXh7Py6H8H8",
-    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/retro-bowl/retro-bowl.xml",
-    "category": "Games"
+    "title": "CroxyProxy",
+    "thumb": "https://www.croxyproxy.com/favicon.ico",
+    "url": "https://www.croxyproxy.com/",
+    "category": "Proxies",
+    "direct": true
   },
   {
-    "title": "Slope (Google Mirror)",
-    "thumb": "https://raw.githubusercontent.com/tuhidul/Slope-Game/master/slope.png",
-    "url": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1id/steele@master/slope/slope.xml",
-    "category": "Games"
+    "title": "Incognito",
+    "thumb": "https://img.icons8.com/ios/50/ffffff/private.png",
+    "url": "https://www.blockaway.net/",
+    "category": "Proxies"
+  },
+
+  /* --- SOCIAL MEDIA ( Mirrors & Directs ) --- */
+  {
+    "title": "Instagram (Mirror)",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
+    "url": "https://piks.eu.org/", 
+    "category": "Social Media"
   },
   {
-    "title": "Roblox (Login via Proxy)",
-    "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg",
-    "url": "https://now.gg/play/roblox-corporation/5349/roblox",
+    "title": "TikTok (Viewer)",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg",
+    "url": "https://urlebird.com/",
+    "category": "Social Media"
+  },
+  {
+    "title": "Twitter / X (Nitter)",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg",
+    "url": "https://nitter.net/",
+    "category": "Social Media"
+  },
+  {
+    "title": "Discord (Web)",
+    "thumb": "https://assets-global.website-files.com/6257adef93867e56f84d3092/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png",
+    "url": "https://discord.com/app", 
+    "category": "Social Media",
+    "direct": true
+  },
+  {
+    "title": "Reddit (Libreddit)",
+    "thumb": "https://www.redditinc.com/assets/images/site/reddit-logo.png",
+    "url": "https://libreddit.kavin.rocks/",
+    "category": "Social Media"
+  },
+
+  /* --- SHOOTERS & ACTION --- */
+  {
+    "title": "1v1.LOL (Unblocked)",
+    "thumb": "https://play-lh.googleusercontent.com/f97scg8pAAM_qO87fG1YF0Z9lJ_5gHl2lJ3w5gHl2lJ3w5gHl2lJ3w5gHl2lJ3w5",
+    "url": "https://1v1.lol", 
     "category": "Games",
     "direct": true
   },
   {
-    "title": "Instagram (Use Proxy)",
-    "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
-    "url": "https://instagram.com",
-    "category": "Social Media",
+    "title": "Krunker.io",
+    "thumb": "https://krunker.io/img/logo_3.png",
+    "url": "https://krunker.io/",
+    "category": "Games",
     "direct": true
   },
   {
-    "title": "Snapchat (Use Proxy)",
-    "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Snapchat_logo.svg",
-    "url": "https://web.snapchat.com",
-    "category": "Social Media",
+    "title": "Shell Shockers",
+    "thumb": "https://shellshock.io/favicon.ico",
+    "url": "https://shellshock.io/",
+    "category": "Games",
     "direct": true
+  },
+
+  /* --- ARCADE & RETRO (Google Mirrors) --- */
+  {
+    "title": "Retro Bowl",
+    "thumb": "https://play-lh.googleusercontent.com/QXW4iC6k3K2c0Z8j5q0Z9lJ_5gHl2lJ3w5gHl2lJ3w5gHl2lJ3w5gHl2lJ3w5",
+    "url": "https://game316.github.io/rb1/",
+    "category": "Games"
+  },
+  {
+    "title": "Slope",
+    "thumb": "https://play-lh.googleusercontent.com/u/1000720060/slope.png",
+    "url": "https://kdata1.com/2020/05/slope/",
+    "category": "Games"
+  },
+  {
+    "title": "Subway Surfers",
+    "thumb": "https://play-lh.googleusercontent.com/w2s9M4i2c1Z8j5q0Z9lJ_5gHl2lJ3w5gHl2lJ3w5gHl2lJ3w5gHl2lJ3w5",
+    "url": "https://subway-surfers.github.io/",
+    "category": "Games"
+  },
+  {
+    "title": "Minecraft (Classic)",
+    "thumb": "https://classic.minecraft.net/assets/images/favicon.png",
+    "url": "https://classic.minecraft.net/",
+    "category": "Games"
+  },
+  {
+    "title": "Tetris",
+    "thumb": "https://tetris.com/favicon.ico",
+    "url": "https://tetris.com/play-tetris",
+    "category": "Games"
+  },
+  {
+    "title": "Pac-Man",
+    "thumb": "https://www.google.com/logos/2010/pacman10-hp.png",
+    "url": "https://www.google.com/logos/2010/pacman10-i.html",
+    "category": "Games"
+  },
+  {
+    "title": "2048",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png",
+    "url": "https://play2048.co/",
+    "category": "Games"
+  },
+  {
+    "title": "Flappy Bird",
+    "thumb": "https://flappybird.io/img/bird.png",
+    "url": "https://flappybird.io/",
+    "category": "Games"
+  },
+  {
+    "title": "Cookie Clicker",
+    "thumb": "https://orteil.dashnet.org/cookieclicker/img/perfectCookie.png",
+    "url": "https://orteil.dashnet.org/cookieclicker/",
+    "category": "Games"
+  },
+  {
+    "title": "Agar.io",
+    "thumb": "https://agar.io/img/favicon.ico",
+    "url": "https://agar.io/",
+    "category": "Games",
+    "direct": true
+  },
+  {
+    "title": "Slither.io",
+    "thumb": "https://slither.io/s/favicon.png",
+    "url": "http://slither.io/",
+    "category": "Games",
+    "direct": true
+  },
+  {
+    "title": "Paper.io 2",
+    "thumb": "https://paper-io.com/favicon.ico",
+    "url": "https://paper-io.com/",
+    "category": "Games",
+    "direct": true
+  },
+  {
+    "title": "Hole.io",
+    "thumb": "https://hole-io.com/favicon.ico",
+    "url": "https://hole-io.com/",
+    "category": "Games",
+    "direct": true
+  }, 
+  {
+    "title": "Moto X3M",
+    "thumb": "https://img.poki.com/cdn-cgi/image/quality=78,width=204,height=204,fit=cover,f=auto/b91754093c8d451197771747806144e3.png",
+    "url": "https://moto-x3m.github.io/",
+    "category": "Games"
+  },
+  {
+    "title": "Basketball Stars",
+    "thumb": "https://img.poki.com/cdn-cgi/image/quality=78,width=204,height=204,fit=cover,f=auto/8c067831d16140641151610410609714.png",
+    "url": "https://basketball-stars.github.io/",
+    "category": "Games"
   }
 ]
