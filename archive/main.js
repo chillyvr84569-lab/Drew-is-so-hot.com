@@ -1,60 +1,83 @@
-/* archive/main.js */
 document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('games-grid');
     const searchBar = document.getElementById('search');
-    
-    // Fetch the games data
-    fetch('./games.json')
-        .then(res => res.json())
-        .then(data => {
-            renderGrid(data);
-            // Search Functionality
-            searchBar.oninput = (e) => {
-                const term = e.target.value.toLowerCase();
-                const filtered = data.filter(g => g.title.toLowerCase().includes(term));
-                renderGrid(filtered);
-            };
-        })
-        .catch(err => console.error("Could not load games:", err));
+    let allGames = [];
 
+    // 1. Fetch the data
+    fetch('./games.json')
+        .then(response => response.json())
+        .then(data => {
+            allGames = data;
+            renderGrid(allGames);
+        })
+        .catch(error => {
+            console.error('Error loading games:', error);
+            gameContainer.innerHTML = '<p>Error loading games. Check console.</p>';
+        });
+
+    // 2. Search Function
+    searchBar.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredGames = allGames.filter(game => 
+            game.title.toLowerCase().includes(searchTerm)
+        );
+        renderGrid(filteredGames);
+    });
+
+    // 3. Render Grid Function
     function renderGrid(list) {
         gameContainer.innerHTML = '';
         
         list.forEach(game => {
+            // Create Card
             const card = document.createElement('div');
             card.className = 'game-card';
+            
+            // Fill Card HTML
             card.innerHTML = `
                 <img src="${game.thumb}" alt="${game.title}" loading="lazy">
                 <h3>${game.title}</h3>
                 <button class="play-btn">Launch</button>
             `;
             
-            card.querySelector('.play-btn').onclick = () => {
-                // If it's a "Direct" link (like generic Socials), open in new tab
-                if (game.direct) {
-                    const win = window.open(game.url, '_blank');
-                    if(!win) alert("Pop-up blocked! Allow them to play.");
-                } 
-                // Everything else (Games/Proxies) goes into the Cloaker
-                else {
-                    const win = window.open('about:blank', '_blank');
-                    if (!win) return alert("Please allow pop-ups!");
-                    
-                    // Stealth Title
-                    win.document.title = "Google Docs";
-                    win.document.body.style = "margin:0; height:100vh; overflow:hidden; background:#000;";
-                    
-                    const iframe = win.document.createElement('iframe');
-                    iframe.style = "width:100vw; height:100vh; border:none;";
-                    iframe.src = game.url;
-                    
-                    // CRITICAL: This allows 1v1.LOL to capture your mouse
-                    iframe.allow = "fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; accelerometer; cursor-lock"; 
-                    
-                    win.document.body.appendChild(iframe);
-                }
-            };
+            // Add Click Event
+            const btn = card.querySelector('.play-btn');
+            btn.addEventListener('click', () => {
+                launchGame(game);
+            });
+
             gameContainer.appendChild(card);
         });
+    }
+
+    // 4. Launch Game Logic
+    function launchGame(game) {
+        // If it's a direct link (Social Media), open in new tab
+        if (game.direct) {
+            window.open(game.url, '_blank');
+        } 
+        // Otherwise, use the Cloaker
+        else {
+            const win = window.open('about:blank', '_blank');
+            if (!win) {
+                alert("Pop-up blocked! Please allow pop-ups for this site.");
+                return;
+            }
+
+            win.document.title = "Google Docs";
+            win.document.body.style.margin = "0";
+            win.document.body.style.height = "100vh";
+            win.document.body.style.overflow = "hidden";
+            win.document.body.style.backgroundColor = "#000";
+
+            const iframe = win.document.createElement('iframe');
+            iframe.style.border = "none";
+            iframe.style.width = "100vw";
+            iframe.style.height = "100vh";
+            iframe.src = game.url;
+            iframe.allow = "fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; accelerometer; cursor-lock";
+
+            win.document.body.appendChild(iframe);
+        }
     }
 });
